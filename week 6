@@ -1,0 +1,124 @@
+Experiment – 06 : Docker Commands for Content Management
+AIM
+
+Explore Docker commands for managing images, containers, files, and volumes (content management).
+
+
+Exp-06
+
+OBJECTIVE
+
+Learn important Docker commands and flags.
+
+Pull and run images from Docker Hub.
+
+Build custom images with Dockerfile.
+
+Manage containers and inspect logs.
+
+Use Docker volumes to persist data.
+
+Use Docker Compose to run multi-container apps.
+
+
+Exp-06
+
+SOFTWARE REQUIREMENTS
+
+Docker Desktop (Windows/macOS) or Docker Engine (Linux).
+
+OS: Windows 10+ with WSL2, Ubuntu 20.04+, or macOS latest.
+
+Terminal (PowerShell / Bash).
+
+Internet connection to pull images.
+
+Optional: VS Code for editing files.
+
+
+Exp-06
+
+QUICK REFERENCE — COMMON COMMANDS (with examples)
+
+Note: Use a normal ASCII hyphen - in commands (not an en-dash).
+
+1. Check Docker
+docker --version
+
+2. List Docker commands
+docker
+
+3. Pull image from Docker Hub
+docker pull ubuntu
+
+4. Run a container (interactive)
+docker run -it ubuntu bash
+
+5. Run container detached (background)
+docker run -d --name mynginx -p 8080:80 nginx
+
+6. List images
+docker images
+
+7. List running containers
+docker ps
+
+
+List all containers (including stopped):
+
+docker ps -a
+
+8. Stop / Start / Remove container
+docker stop mynginx
+docker start mynginx
+docker rm mynginx
+
+9. Remove image
+docker rmi nginx
+
+10. Execute command inside running container
+docker exec -it <container_id_or_name> bash
+
+11. View container logs
+docker logs <container_id_or_name>
+
+12. Build image from Dockerfile
+docker build -t myapp:1.0 .
+
+13. Login & push image to Docker Hub
+docker login -u username
+docker tag myapp:1.0 username/myapp:1.0
+docker push username/myapp:1.0
+
+14. Volumes — create, list, use, remove
+docker volume create myvol
+docker volume ls
+docker run -it -v myvol:/data ubuntu bash    # mount volume into /data
+docker volume rm myvol
+docker volume prune   # remove unused volumes
+
+15. Docker Compose (multi-container)
+
+If your compose file is docker-compose.yml in current folder:
+
+docker compose up --build -d
+docker compose down
+
+
+Or specify file explicitly:
+
+docker compose -f docker-compose.yml up --build -d
+docker compose -f docker-compose.yml down
+
+
+Important flags
+
+-d run in background (detached)
+
+-e set environment variables (e.g., -e NODE_ENV=production)
+
+-p host:container map ports
+
+-v mount volumes
+
+(Commands list derived from your experiment document.)
