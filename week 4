@@ -1,0 +1,133 @@
+📘 Experiment – 04 : Jenkins Installation and Setup
+AIM
+To install Jenkins, perform initial setup, and explore the Jenkins environment for automation tasks.
+
+OBJECTIVE
+
+Install Java (JDK 11 or higher)
+
+Install Jenkins on the system
+
+Unlock Jenkins and configure admin user
+
+Install suggested plugins
+
+Explore Jenkins dashboard
+
+Run a sample freestyle project to verify installation
+
+SOFTWARE REQUIREMENTS
+
+Java JDK 11 or higher
+
+Jenkins package (jenkins.war or system installation)
+
+Web browser
+
+🚀 LAB PROCEDURE
+1. Install Java (If not installed)
+java -version
+
+Windows installation steps (based on PDF):
+
+Search for "JDK download"
+Open Oracle website
+Download JDK 21 x64 Installer
+Install with default settings
+Verify Java:
+java -version
+2. Install Jenkins
+Windows installation (from PDF)
+Search “Jenkins download”
+Open first link (jenkins.io)
+Download Java Generic Package (.war)
+Open Command Prompt
+Navigate to the folder containing jenkins.war
+Run:
+java -jar jenkins.war
+
+
+This starts Jenkins on http://localhost:8080
+
+4. Retrieve Jenkins Initial Admin Password
+
+After installation, Jenkins generates an initial password.
+
+Windows
+It appears in the command prompt when Jenkins starts from jenkins.war.
+Copy this password.
+
+5. Access Jenkins Web Interface
+
+Open browser →
+
+http://localhost:8080
+6. Unlock Jenkins
+
+Paste the initialAdminPassword into the setup wizard to continue.
+
+7. Install Suggested Plugins
+
+Choose:
+
+✔ Install Suggested Plugins
+
+According to the screenshots on page 4, plugins include:
+
+Git
+
+Pipeline
+
+Workspace Cleanup
+
+Credentials Binding
+
+SSH Build Agents
+
+Timestamper
+
+GitHub Branch Source
+
+LDAP
+…and more.
+
+Wait until installation completes.
+8. Create First Admin User
+
+Fill in:
+
+Username
+
+Password
+
+Full Name
+
+Email Address
+
+Then continue to dashboard.
+9. Explore Jenkins Dashboard
+
+You will see options such as:
+
+New Item
+
+Manage Jenkins
+
+Build History
+
+Credentials
+
+Explore the interface and settings.
+
+10. Verify Jenkins Installation
+✔ Create a freestyle project
+
+Click New Item
+
+Choose Freestyle Project
+
+Add a simple build step (e.g., print message)
+
+Run the build
+
+If the build succeeds → Jenkins is installed correctly.
