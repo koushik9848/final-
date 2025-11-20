@@ -1,0 +1,114 @@
+
+Experiment 3 
+## **AIM**
+
+Practice source code management on GitHub using the program written in Exercise-1.
+
+
+---
+
+## **OBJECTIVE**
+
+To practice the following Git & GitHub operations:
+
+* Adding files
+* Committing changes
+* Pushing to GitHub
+* Pulling updates
+* Creating branches
+* Merging branches
+* Collaborating with others
+
+
+
+---
+
+## **SOFTWARE REQUIREMENTS**
+
+* Git installed
+* GitHub account
+* Code editor (VS Code recommended)
+
+
+
+---
+
+# 🚀 **PROCEDURE**
+
+## **1. Configure Git (First Time Setup)**
+
+```
+git config --global user.name "Your Name"
+git config --global user.email "your-email@example.com"
+git config --list
+```
+
+
+
+---
+
+## **2. Create or Clone a Repository**
+
+### **Option A – Create a new repo on GitHub**
+
+Then open it in VS Code.
+
+### **Option B – Clone an existing repo**
+
+```
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+```
+---
+## **3. Initialize a Local Repository (If not cloned)**
+```
+mkdir source-code-management
+cd source-code-management
+git init
+```
+---
+## **4. Add Source Code Files**
+```
+echo "print('Hello DevOps')" > main.py
+git status
+git add main.py
+```
+---
+## **5. Commit Changes**
+```
+git commit -m "Added main.py with Hello DevOps script"
+```
+---
+## **6. Create and Manage Branches**
+```
+git branch feature-branch
+git switch feature-branch
+```
+---
+## **7. Modify Files and Commit**
+```
+echo "print('Feature work added')" >> main.py
+git add main.py
+git commit -m "Updated main.py in feature branch"
+``-
+---
+
+## **8. Merge Feature Branch into Main**
+```
+git switch main
+git merge feature-branch
+```
+---
+## **9. Connect Local Repo to GitHub & Push Code**
+```
+git remote add origin https://github.com/your-username/your-repo-name.git
+git branch -M main
+git push -u origin main
+```
+---
+## **10. Pull Updates from GitHub**
+
+```
+git pull origin main
+```
+---

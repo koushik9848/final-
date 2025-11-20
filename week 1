@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Registration - NNRG eBooks</title>
+  <script>
+    function validate() {
+      var uname = document.f1.username.value;
+      var pwd = document.f1.password.value;
+      var email = document.f1.email.value;
+      var phno = document.f1.phno.value;
+      var addr = document.f1.address.value;
+      var gen = document.f1.gen;
+      var lang = document.f1.lang;
+
+      // Username
+      if (uname == "") {
+        alert("Please enter Username");
+        return false;
+      }
+      if (uname.length < 8) {
+        alert("Username must be at least 8 characters");
+        return false;
+      }
+
+      // Password
+      if (pwd == "") {
+        alert("Please enter Password");
+        return false;
+      }
+      if (pwd.length < 6) {
+        alert("Password must be at least 6 characters");
+        return false;
+      }
+
+      // Email
+      if (email == "" || email.indexOf("@") == -1) {
+        alert("Please enter a valid Email");
+        return false;
+      }
+
+      // Phone number
+      if (phno == "" || isNaN(phno) || phno.length != 10) {
+        alert("Please enter a valid 10-digit Phone Number");
+        return false;
+      }
+
+      // Gender
+      var gflag = false;
+      for (var i = 0; i < gen.length; i++) {
+        if (gen[i].checked) gflag = true;
+      }
+      if (!gflag) {
+        alert("Please select Gender");
+        return false;
+      }
+
+      // Language
+      var lflag = false;
+      for (var i = 0; i < lang.length; i++) {
+        if (lang[i].checked) lflag = true;
+      }
+      if (!lflag) {
+        alert("Please select at least one Language");
+        return false;
+      }
+
+      // Address
+      if (addr == "") {
+        alert("Please enter Address");
+        return false;
+      }
+
+      alert("Registration Successful!");
+    }
+  </script>
+</head>
+
+<body style="text-align:center; font-family:Arial;">
+  <h2>Registration Form</h2>
+  <form name="f1">
+    <table align="center" cellpadding="5">
+      <tr><td>Username:</td><td><input type="text" name="username"></td></tr>
+      <tr><td>Password:</td><td><input type="password" name="password"></td></tr>
+      <tr><td>Email:</td><td><input type="text" name="email"></td></tr>
+      <tr><td>Phone:</td><td><input type="text" name="phno"></td></tr>
+      <tr>
+        <td>Gender:</td>
+        <td>
+          <input type="radio" name="gen" value="Male">Male
+          <input type="radio" name="gen" value="Female">Female
+        </td>
+      </tr>
+      <tr>
+        <td>Languages:</td>
+        <td>
+          <input type="checkbox" name="lang" value="English">English
+          <input type="checkbox" name="lang" value="Telugu">Telugu
+          <input type="checkbox" name="lang" value="Hindi">Hindi
+        </td>
+      </tr>
+      <tr><td>Address:</td><td><textarea name="address"></textarea></td></tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="button" value="Submit" onclick="validate()">
+          <input type="reset" value="Reset">
+        </td>
+      </tr>
+    </table>
+  </form>
+</body>
+</html>

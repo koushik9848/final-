@@ -1,0 +1,94 @@
+📘 Experiment – 05 : Continuous Integration & Continuous Deployment (CI/CD) Using Jenkins
+AIM
+To demonstrate Continuous Integration and Continuous Deployment (CI/CD) by automating build and deployment processes using Jenkins.
+🚀 PROCEDURE
+1. Configure Jenkins for CI/CD
+
+Ensure Jenkins is running at:
+http://localhost:8080
+Log in to Jenkins Dashboard
+
+2. Install Required Plugins
+Navigate to:
+Manage Jenkins → Plugins
+
+Install:
+Git Plugin
+Pipeline Plugin
+Maven/Gradle plugin (if needed)
+
+3. Create a New Freestyle Project
+
+Steps:
+
+Click New Item
+Enter project nam
+Select Freestyle project
+Click OK
+
+4. Configure Source Code Management (SCM)
+
+Inside your project settings:
+Go to Source Code Management
+Select Git
+Enter your repository URL, e.g.:
+https://github.com/your-username/sample-project.git
+5. Configure Build Triggers
+
+Choose one:
+✔ Poll SCM
+Automatically checks Git repo for changes:
+
+* * * * *
+
+✔ Build periodically
+
+Schedule automated builds.
+
+✔ GitHub Webhook
+
+Triggers builds on every push.
+
+Your PDF screenshot (page 3) shows the Trigger settings.
+6. Define Build Steps
+
+Go to Build section.
+
+Choose Build Step:
+
+Execute Shell
+
+Execute Windows Batch Command
+
+Invoke Maven Goals
+
+Example Commands:
+mvn clean install
+javac filename.java
+java filename
+
+8. Save and Build
+
+Click Save
+
+Click Build Now
+
+Track build under Build History
+
+9. View Console Output
+
+To see build logs:
+
+Click the build number
+
+Select Console Output
+
+Here you can track:
+
+Git pull process
+
+Compilation results
+
+Test results
+
+Deployment steps
