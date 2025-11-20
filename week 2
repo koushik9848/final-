@@ -1,174 +1,4 @@
-
-# **Experiment – 02 : Explore Git and GitHub Commands**
-## **AIM**
-To explore and practice basic Git and GitHub commands for version control in a collaborative software development environment.
----
-## **OBJECTIVE**
-
-* Understand what a Version Control System (VCS) is.
-* Learn how to initialize a Git repository.
-* Learn how to track changes, stage, and commit files.
-* Configure Git username and email.
-* Work with branches, merges, and logs.
-* Connect a local repository to GitHub.
-* Push, pull, and clone repositories.
-* Understand remote repository operations.
-
----
-
-## **SOFTWARE REQUIREMENTS**
-
-* Git (installed on computer)
-* GitHub account
-* VS Code or any code editor
-
----
-
-# **THEORY**
-
-## **1. Version Control System (VCS)**
-
-A Version Control System records changes made to files over time.
-It allows:
-
-* Tracking modifications
-* Collaboration among multiple developers
-* Rollback to previous versions
-* Maintaining a complete history of changes
-
----
-
-## **2. Git**
-
-Git is a distributed version control system created by **Linus Torvalds**.
-It provides:
-
-* Tracking of code changes
-* Branching and merging
-* Offline work
-* Smooth collaboration
-
----
-
-## **3. GitHub**
-
-GitHub is a cloud-based hosting service for Git repositories.
-It provides:
-
-* Remote storage of Git repositories
-* Collaboration features
-* Pull requests
-* Issue tracking
-* Easy sharing and deployment
-
----
-
-# **GIT COMMANDS**
-
-### **1. `git init`**
-
-Initializes a new Git repository.
-
-```
-git init
-```
-
-### **2. `git status`**
-
-Shows untracked, modified, and staged files.
-
-```
-git status
-```
-
-### **3. `git config`**
-
-Sets username and email.
-
-```
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
-```
-
-### **4. `git add`**
-
-Adds files to staging area.
-
-```
-git add filename
-git add .
-```
-
-### **5. `git commit`**
-
-Saves staged changes into Git repository.
-
-```
-git commit -m "Commit message"
-```
-
-### **6. `git branch`**
-
-Creates, lists, or deletes branches.
-
-```
-git branch newbranch
-git branch -a
-git branch -d branchname
-```
-
-### **7. `git checkout`**
-
-Switches to another branch or creates one.
-
-```
-git checkout main
-git checkout -b feature1
-```
-
-### **8. `git merge`**
-
-Merges one branch into another.
-
-```
-git merge feature1
-```
-
-### **9. `git remote`**
-
-Shows or adds remote repository URL.
-
-```
-git remote -v
-git remote add origin <repo-URL>
-```
-
-### **10. `git push`**
-
-Uploads commits to GitHub.
-
-```
-git push -u origin main
-```
-
-### **11. `git pull`**
-
-Fetches and merges changes from GitHub.
-
-```
-git pull origin main
-```
-
-### **12. `git clone`**
-
-Downloads a GitHub repository.
-
-```
-git clone <repo-URL>
-```
-
----
-
+Experiment 2
 # **PROCEDURE**
 
 ### **1. Configure Git**
@@ -178,15 +8,12 @@ git config --global user.name "Your Name"
 git config --global user.email "your-email@example.com"
 git config --list
 ```
-
 ### **2. Create Repository**
-
 ```
 mkdir devops-lab
 cd devops-lab
 git init
 ```
-
 ### **3. Add & Commit Files**
 
 ```
@@ -239,5 +66,3 @@ git merge feature-1
 ```
 git pull origin main
 ```
-
----
