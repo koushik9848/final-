@@ -1,0 +1,275 @@
+✅ How to Run the Project by Cloning from GitHub
+
+If someone already uploaded the Experiment-12 code to GitHub, then you don’t need to create files manually.
+You can simply clone the repository and run the project.
+
+Here is how:
+
+✔ STEP 1 — Clone the Git Repository
+
+Run this in PowerShell:
+
+git clone https://github.com/Srivaishnavi08/tests 
+
+
+Example:
+
+git clone https://github.com/koushik9848/exp12-selenium.git
+
+✔ STEP 2 — Go Inside the Project
+cd exp12-selenium
+
+
+You should now see these files:
+
+Dockerfile
+docker-compose.yml
+index.html
+seleniumTest.py
+
+✔ STEP 3 — Start Docker Services
+
+Make sure Docker Desktop is running.
+
+Then run:
+
+docker compose up --build
+
+
+⚠️ Important:
+Use hyphen (-) not en-dash (–).
+
+✔ Correct:
+
+docker compose up --build
+
+
+❌ Wrong:
+
+docker compose –f up --build
+
+
+This will:
+
+Start the HTML App (http://localhost:8000
+)
+
+Start Selenium Chrome (http://localhost:4444
+)
+
+✔ STEP 4 — Run the Selenium Test Script
+
+Open another terminal window:
+
+python seleniumTest.py
+
+
+You will see:
+
+Browser actions in Selenium Grid
+
+Login attempt
+
+Dashboard page OR error message
+
+Video recording
+
+Console output:
+
+Login Successful!
+
+OR Login failed: Incorrect credentials
+
+✔ STEP 5 — Stop Services
+
+When done:
+
+docker compose down
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+📁 Folder Structure (Create Manually)
+exp12/
+│── index.html
+│── Dockerfile
+│── docker-compose.yml
+│── seleniumTest.py
+
+📌 1. index.html (FULL CODE)
+
+Create a file named index.html and paste this:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Login App</title>
+<style>
+    body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 50px;
+    }
+    #dashboard {
+        display: none;
+    }
+    #error-message {
+        color: red;
+        display: none;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Welcome to the Application</h1>
+
+<a href="#" id="get-started">Get started</a>
+
+<div id="login-section" style="display:none;">
+    <h2>Login</h2>
+    <input id="user_email_login" type="text" placeholder="Enter email"><br><br>
+    <input id="user_password" type="password" placeholder="Enter password"><br><br>
+    <button name="commit" id="login-btn">Login</button>
+
+    <p id="error-message">Invalid username or password!</p>
+</div>
+
+<div id="dashboard">
+    <h2>Dashboard</h2>
+    <p>Login successful! Welcome to your dashboard.</p>
+</div>
+
+<script>
+document.getElementById("get-started").addEventListener("click", function() {
+    document.getElementById("login-section").style.display = "block";
+});
+
+document.getElementById("login-btn").addEventListener("click", function() {
+    let email = document.getElementById("user_email_login").value;
+    let pass = document.getElementById("user_password").value;
+
+    if(email === "abc@gmail.com" && pass === "password") {
+        document.getElementById("dashboard").style.display = "block";
+        document.getElementById("error-message").style.display = "none";
+    } else {
+        document.getElementById("error-message").style.display = "block";
+        document.getElementById("dashboard").style.display = "none";
+    }
+});
+</script>
+
+</body>
+</html>
+
+📌 2. Dockerfile (FULL CODE)
+
+Create a file named Dockerfile:
+
+FROM python:3.9
+WORKDIR /app
+COPY index.html .
+EXPOSE 8000
+CMD ["python", "-m", "http.server", "8000"]
+
+📌 3. docker-compose.yml (FULL CODE)
+
+Create a file named docker-compose.yml:
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: html-server
+    ports:
+      - "8000:8000"
+
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: selenium-chrome
+    ports:
+      - "4444:4444"
+    depends_on:
+      - app
+
+📌 4. seleniumTest.py (FULL CODE)
+
+Create a file named seleniumTest.py:
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
+
+print("Test Execution Started")
+
+options = webdriver.ChromeOptions()
+options.add_argument('--ignore-ssl-errors=yes')
+options.add_argument('--ignore-certificate-errors')
+
+driver = webdriver.Remote(
+    command_executor='http://localhost:4444/wd/hub',
+    options=options
+)
+
+driver.maximize_window()
+time.sleep(10)
+
+driver.get("http://host.docker.internal:8000")
+time.sleep(10)
+
+try:
+    link = WebDriverWait(driver, 30).until(
+        EC.element_to_be_clickable((By.ID, "get-started"))
+    )
+    link.click()
+    time.sleep(5)
+
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "user_email_login")))
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "user_password")))
+
+    username = driver.find_element(By.ID, "user_email_login")
+    password = driver.find_element(By.ID, "user_password")
+    login_button = driver.find_element(By.ID, "login-btn")
+
+    username.send_keys("abc@gmail.com")
+    password.send_keys("password")
+    login_button.click()
+
+    try:
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.ID, "dashboard"))
+        )
+        print("Login Successful!")
+    except:
+        print("Login failed: Incorrect credentials")
+
+except Exception as e:
+    print("Error:", e)
+
+finally:
+    time.sleep(5)
+    driver.quit()
+    print("Test Execution Completed!")
+
+✅ HOW TO RUN THE FULL PROJECT
+✔ Step 1 — Build & Start Containers
+docker compose up --build
+
+✔ Step 2 — Run Selenium Test
+
+Open another terminal:
+
+python seleniumTest.py
+
+✔ Step 3 — Stop Everything
+docker compose dow
