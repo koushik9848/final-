@@ -1,0 +1,177 @@
+📘 Experiment – 11 : JavaScript Program & Testing Using Selenium
+AIM
+
+Write a simple program in JavaScript and perform automated testing using Selenium.
+
+
+Exp-11
+
+OBJECTIVE
+
+Develop automated Selenium test cases
+
+Validate the functionality of a simple JavaScript web app
+
+Use Selenium WebDriver to simulate user actions
+
+Test a previously containerized web application
+
+
+Exp-11
+
+SOFTWARE REQUIREMENTS
+
+Node.js or Python environment
+
+Selenium WebDriver
+
+Chrome / Firefox browser
+
+Corresponding WebDriver (ChromeDriver, GeckoDriver, etc.)
+
+VS Code / Any editor
+
+Docker running (optional for containerized app)
+
+Sample web app (HTML + JS)
+
+
+Exp-11
+
+🚀 LAB PROCEDURE
+1. Open VS Code and Create Project Files
+
+Create a folder and add:
+
+index.html
+
+script.js
+
+
+Exp-11
+
+2. Create index.html
+
+Paste the full HTML code from the PDF:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sum Calculator</title>
+<style>
+body{
+text-align: center;
+}
+</style>
+</head>
+<body>
+<h1>Sum Calculator</h1>
+
+<input type="number" id="num1" placeholder="Enter first number">
+<input type="number" id="num2" placeholder="Enter second number">
+<button id="add">Add</button>
+
+<p>Result: <span id="result">0</span></p>
+
+<script>
+function calculateSum(a, b) {
+  return a + b;
+}
+
+document.getElementById('add').addEventListener('click', function() {
+  const num1 = parseInt(document.getElementById('num1').value, 10);
+  const num2 = parseInt(document.getElementById('num2').value, 10);
+  const result = calculateSum(num1, num2);
+  document.getElementById('result').textContent = result;
+});
+</script>
+</body>
+</html>
+
+
+Exp-11
+
+3. Create script.js (Selenium Test Script)
+
+Paste this JavaScript test script from the PDF:
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import { Builder, By, until } from 'selenium-webdriver';
+import assert from 'assert';
+
+// Define __dirname manually
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+async function runTest() {
+    let driver = await new Builder().forBrowser('chrome').build();
+
+    try {
+        // Load the HTML file
+        await driver.get('file://' + __dirname + '/index.html');
+
+        // Find input elements
+        const num1 = await driver.findElement(By.id('num1'));
+        await num1.sendKeys('50');
+
+        const num2 = await driver.findElement(By.id('num2'));
+        await num2.sendKeys('10');
+
+        // Click Add button
+        const addButton = await driver.findElement(By.id('add'));
+        await addButton.click();
+
+        // Verify result
+        const result = await driver.findElement(By.id('result'));
+        const text = await result.getText();
+
+        assert.strictEqual(text, '60', 'Sum calculation is incorrect');
+        console.log('✅ Test passed: Sum is correct');
+    } catch (error) {
+        console.error('❌ Test failed:', error);
+    } finally {
+        console.log('Press any key to exit...');
+        process.stdin.setRawMode(true);
+        process.stdin.resume();
+        process.stdin.on('data', async () => {
+            await driver.quit();
+            process.exit(0);
+        });
+    }
+}
+
+runTest();
+
+
+Exp-11
+
+4. Install Selenium WebDriver
+
+Open terminal:
+
+npm install selenium-webdriver
+
+
+Exp-11
+
+5. Run the Test
+
+Run:
+
+node script.js
+
+
+Selenium will:
+
+Open Chrome
+
+Load your HTML file
+
+Enter numbers 50 and 10
+
+Click Add
+
+Validate that result is 60
