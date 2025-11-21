@@ -1,0 +1,167 @@
+📘 Experiment – 10 : Install and Explore Selenium for Automated Testing
+AIM
+
+To install Selenium and explore its environment for automating web application testing.
+
+
+Exp-10
+
+OBJECTIVE
+
+Install Selenium
+
+Install WebDriver (ChromeDriver)
+
+Write a Python script to automate Google search
+
+Understand Selenium WebDriver workflow
+
+
+Exp-10
+
+SOFTWARE REQUIREMENTS
+
+Python installed
+
+Selenium library
+
+Chrome browser
+
+ChromeDriver
+
+Code editor (VS Code recommended)
+
+
+Exp-10
+
+🚀 LAB PROCEDURE
+1. Install Python
+
+Download and install Python from:
+https://www.python.org/downloads/
+
+Verify installation:
+
+python --version
+
+
+Exp-10
+
+2. Install Selenium Library
+
+Install using pip:
+
+pip install selenium
+
+
+Exp-10
+
+3. Download ChromeDriver
+Step A — Search for ChromeDriver
+
+Search in Google: chrome driver for selenium
+Then open the first link (as shown on page 2).
+
+
+Exp-10
+
+Step B — Check Chrome version
+
+Open:
+
+chrome://settings/help
+
+
+Match the Chrome version with the ChromeDriver version.
+(Page 2 screenshot shows version checking.)
+
+
+Exp-10
+
+Step C — Select Chrome for Testing Dashboard
+
+Open the Chrome for Testing (CfT) availability dashboard.
+Choose Stable version (page 3).
+
+
+Exp-10
+
+Step D — Download ChromeDriver
+
+Select your OS (Windows/macOS/Linux) and download the ZIP file.
+(PDF page 4 shows all OS download options.)
+
+
+Exp-10
+
+Step E — Extract & Set PATH
+
+Extract ZIP file
+
+Copy chromedriver.exe
+
+Add its folder path to System Environment Variables → PATH
+
+
+Exp-10
+
+4. Verify ChromeDriver Installation
+
+Run:
+
+chromedriver --version
+
+
+Exp-10
+
+5. Write Selenium Automation Script
+
+Open VS Code → Create test.py and paste the following code (from PDF page 5):
+
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+import time
+
+# Specify the correct path to your ChromeDriver
+chrome_service = Service("C:\\Program Files\\chromedriver-win64\\chromedriver.exe")
+
+# Set up the WebDriver for Chrome
+driver = webdriver.Chrome(service=chrome_service)
+
+try:
+    # Step 1: Open Google in the browser
+    driver.get("https://www.google.com")
+
+    # Step 2: Locate the search box using the name attribute
+    search_box = driver.find_element(By.NAME, "q")
+
+    # Step 3: Enter the search term and press Enter
+    search_box.send_keys("https://cmrcet.ac.in/")
+    search_box.send_keys(Keys.RETURN)
+
+    # Optional: Wait for a few seconds to see the search results
+    time.sleep(20)
+
+finally:
+    # Step 4: Close the browser
+    driver.quit()
+
+
+⚠️ Important: Update the ChromeDriver path to match your system.
+
+
+Exp-10
+
+6. Run the Script
+
+Execute:
+
+python test.py
+
+
+Browser will open and automatically search for cmrcet.ac.in on Google.
+
+
+Exp-10
