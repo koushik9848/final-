@@ -1,0 +1,158 @@
+📘 Experiment – 09 : Automate Running a Containerized Application Using Kubernetes
+AIM
+
+Automate the process of running the containerized application developed in Experiment-07 using Kubernetes.
+
+
+Exp-09
+
+OBJECTIVE
+
+Automate building and deploying the application using Kubernetes
+
+Manage container images using Docker
+
+Apply Kubernetes Deployment and Service files
+
+Integrate Jenkins + GitHub + Docker + Kubernetes
+
+
+Exp-09
+
+SOFTWARE REQUIREMENTS
+
+Docker Desktop
+
+Kubernetes (Minikube OR Docker Desktop Kubernetes)
+
+kubectl CLI
+
+GitHub Account
+
+Jenkins
+
+VS Code / Any Editor
+
+Containerized application from Experiment-07
+
+
+Exp-09
+
+🚀 STEP 1 — Clone the Repository
+
+Clone the given GitHub repository:
+
+git clone https://github.com/shiv4j/kube
+
+
+Make sure the repo contains:
+
+my-kube1-deployment.yaml
+
+my-kube1-service.yaml
+
+Push this repository to your own GitHub account (OR fork it directly).
+After pushing, GitHub should show all the files like shown in the PDF (page 1).
+
+
+Exp-09
+
+🚀 STEP 2 — Configure Jenkins with Your GitHub Repo
+
+Open Jenkins Dashboard → New Item
+
+Enter a project name
+
+Select Pipeline Project
+
+Go to Pipeline tab
+
+Set:
+
+Definition: Pipeline script from SCM
+
+SCM: Git
+
+Repository URL: your GitHub repo URL
+
+Branch: main / master (based on your repo)
+
+Click Apply → Save
+
+The screenshot on PDF page 2 shows the Jenkins configuration exactly.
+
+
+Exp-09
+
+➤ Build the Jenkins Job
+
+Click Build Now.
+
+A green tick means the pipeline is successful (page 3 screenshot).
+
+
+Exp-09
+
+🚀 STEP 3 — Push Docker Image to Docker Hub
+
+After Jenkins build, a Docker image is created (shown on PDF page 4).
+
+
+Exp-09
+
+1. Login to Docker Hub:
+docker login
+
+2. Tag the generated image:
+docker tag <local-image-name>:<tag> yourusername/image-name:<tag>
+
+
+Example from PDF:
+
+docker tag kube:latest rajshreel023/kube1:latest
+
+
+Exp-09
+
+3. Push image to Docker Hub:
+docker push yourusername/image-name:<tag>
+
+
+Example:
+
+docker push rajshreel023/kube1:latest
+
+
+The console output of a successful push is shown on PDF page 4.
+
+
+Exp-09
+
+🚀 STEP 4 — Deploy Application Using Kubernetes
+1. Start Kubernetes:
+
+(If using Minikube)
+
+minikube start
+
+
+Exp-09
+
+2. Apply Deployment file:
+kubectl apply -f my-kube1-deployment.yaml
+
+3. Apply Service file:
+kubectl apply -f my-kube1-service.yaml
+
+
+Exp-09
+
+4. Check Deployment and Pods:
+kubectl get pods
+kubectl get service
+
+5. Open Kubernetes Dashboard:
+minikube dashboard
+
+
+This opens the dashboard in default browser where you can see Pods, Services, Deployments (PDF page 6).
