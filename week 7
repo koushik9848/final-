@@ -1,0 +1,130 @@
+
+Exp-07
+OBJECTIVE
+
+Understand how to containerize a basic application
+
+Learn how to build Docker images
+
+Learn how to run containers using port mapping
+
+Verify application output via browser
+
+
+Exp-07
+
+SOFTWARE REQUIREMENTS
+
+Docker (Docker Desktop for Windows/macOS or Docker Engine for Linux)
+
+OS: Windows 10/11 with WSL2 / Ubuntu / macOS
+
+Git installed
+
+Internet connection
+
+Optional editor: VS Code
+
+
+Exp-07
+
+🚀 LAB PROCEDURE
+1. Clone the Getting-Started App Repository
+
+Run the command:
+
+git clone https://github.com/docker/getting-started-app.git
+
+
+This clones the official sample app from Docker Hub’s GitHub repository.
+
+
+Exp-07
+
+2. View Folder Structure
+
+Your folder should contain:
+
+getting-started-app/
+│── .dockerignore
+│── package.json
+│── README.md
+│── spec/
+│── src/
+│── yarn.lock
+
+
+(Structure shown on page 1 of the PDF.)
+
+
+Exp-07
+
+3. Create a Dockerfile
+
+Inside the getting-started-app directory, create a file named Dockerfile and add:
+
+FROM node:18-alpine
+WORKDIR /app
+COPY . .
+RUN yarn install --production
+CMD ["node", "src/index.js"]
+EXPOSE 3000
+
+
+Exp-07
+
+Then navigate into the project folder:
+
+cd /path/to/getting-started-app
+
+4. Build the Docker Image
+
+Run:
+
+docker build -t getting-started-app .
+
+
+Make sure you use a regular hyphen - (not a long dash).
+
+
+Exp-07
+
+5. Verify Image Creation
+
+Check if the image exists:
+
+docker images
+
+
+Output will show something like (from PDF):
+
+REPOSITORY            TAG      IMAGE ID        SIZE
+getting-started-app   latest   3d2d9fbba095    346MB
+
+
+Exp-07
+
+6. Run the Application Container
+
+Start container with port-mapping:
+
+docker run -dp 127.0.0.1:3000:3000 getting-started-app
+
+
+-d → run in background
+
+-p → map host port 3000 to container port 3000
+
+PDF example shows the container running successfully.
+
+
+Exp-07
+
+7. Verify Output in Browser
+
+Open:
+
+http://localhost:3000
+
+
+You should see the running app (To-Do list interface as shown in PDF).
