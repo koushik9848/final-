@@ -1,0 +1,161 @@
+📘 Experiment – 08 : Integrate Kubernetes and Docker
+AIM
+
+To integrate Kubernetes with Docker and orchestrate containerized applications using Pods, Deployments, and Services.
+
+
+Exp-08
+
+OBJECTIVE
+
+Enable Kubernetes inside Docker Desktop
+
+Use kubectl CLI to interact with the Kubernetes cluster
+
+Understand how Kubernetes runs as a single-node cluster inside Docker
+
+Learn how to switch contexts and verify cluster installation
+
+
+Exp-08
+
+SOFTWARE REQUIREMENTS
+
+Docker Desktop (Windows/macOS) or Docker Engine (Linux)
+
+Kubernetes enabled (Minikube OR Docker Desktop Kubernetes)
+
+kubectl command-line tool
+
+Code editor (VS Code recommended)
+
+Sample containerized application
+
+
+Exp-08
+
+🚀 THEORY SUMMARY
+
+According to the PDF:
+
+Docker Desktop includes a built-in single-node Kubernetes cluster (page 1).
+
+It runs inside Docker containers for lightweight local testing.
+
+Kubernetes allows deploying workloads in parallel with Docker containers.
+
+Kubernetes inside Docker Desktop runs locally, not configurable, and is only meant for learning/testing.
+
+
+Exp-08
+
+🧑‍🔧 LAB PROCEDURE
+1. Enable Kubernetes in Docker Desktop
+
+Steps from the PDF (page 1):
+
+Open Docker Desktop Dashboard
+
+Go to Settings
+
+Click the Kubernetes tab
+
+Toggle Enable Kubernetes
+
+Click Apply
+
+
+Exp-08
+
+Docker Desktop will now:
+
+Pull required Kubernetes system images
+
+Set up the Kubernetes cluster
+
+Install kubectl automatically
+
+2. Check kubectl Installation
+
+kubectl is installed at:
+
+Mac: /usr/local/bin/kubectl
+
+Windows:
+
+C:\Program Files\Docker\Docker\resources\bin\kubectl.exe
+
+
+Linux: install manually if needed
+
+
+Exp-08
+
+3. Verify Kubernetes Availability
+
+To check Kubernetes version:
+
+kubectl version
+
+
+To confirm nodes:
+
+kubectl get nodes
+
+
+(Shows docker-desktop node if installed correctly.)
+
+
+Exp-08
+
+4. Working With kubectl Contexts
+
+If kubectl points to another cluster (like Minikube), switch it:
+
+View available contexts:
+kubectl config get-contexts
+
+Switch to Docker Desktop Kubernetes:
+kubectl config use-context docker-desktop
+
+
+Exp-08
+
+5. If Context Appears Empty
+
+PDF suggests (page 3):
+
+Try running in PowerShell or Command Prompt
+
+Set KUBECONFIG to your kube config file
+Example:
+
+setx KUBECONFIG "%USERPROFILE%\.kube\config"
+
+
+Exp-08
+
+6. Reset Kubernetes (Optional)
+
+If Kubernetes breaks or an update is needed:
+
+Docker Desktop → Settings → Kubernetes →
+Reset Kubernetes Cluster
+
+
+Exp-08
+
+🧪 VERIFY INSTALLATION
+
+Run:
+
+kubectl get nodes
+
+
+Expected output:
+
+NAME              STATUS   ROLES    AGE   VERSION
+docker-desktop    Ready    master   Xd    vX.X.X
+
+
+This confirms Kubernetes integration with Docker is successful.
